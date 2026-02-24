@@ -1,0 +1,16 @@
+Uprava neprenosi kodu dle pozadavku vztahujicich se k ukolu ( 3 - 4 ) který měli vazbu na úkol 5.
+
+DODATEČNÁ FUNKCE: Výpočet statistik (Průměr a Medián - doddatek z ukolu 4 (incude úkol 5)
+
+
+
+RESPONDS     <-   Transformace kodu z přirozených čísel na REALNA
+
+REQUEST      ->      /*Ten věk máte blbě i v kódu - mělo jít stejně jako v úkolu 3 o reálné číslo, nikoliv 		o číslo přirozené. Logicky pak průměr i medián vychází jinak. */
+
+
+
+
+RESPONDS  <-	Uprava kodu zaokrouhleni (Median) to floor " const mid = Math.floor(ages.length / 2) "
+
+REQUEST	  ->	/* Medián věku měl být celé číslo zaokrouhlené dolů. */
