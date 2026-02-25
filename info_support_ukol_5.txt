@@ -14,3 +14,23 @@ REQUEST      ->      /*Ten věk máte blbě i v kódu - mělo jít stejně jako 
 RESPONDS  <-	Uprava kodu zaokrouhleni (Median) to floor " const mid = Math.floor(ages.length / 2) "
 
 REQUEST	  ->	/* Medián věku měl být celé číslo zaokrouhlené dolů. */
+
+
+
+Úprava kódu  aby  splňoval požadavky na seřazení (sortovanni) a unikátnost dat.
+
+
+
+
+
+**********************************************************************
+Struktura vytvoŘených dokumentů k úkolu
+
+1.  Domácí úkol 5.md                -   !!! Algoritmus !!!
+4.   main.js                         -   !!!  (hlavní vystup)  !!!    Imlemetace kodu do přípravené šablony -- přímé tstování kódu ----  (dle zadáníi)
+2.  Domci_ukol_5_script.js          -   Vychozí sestavení kodu dle zadaní.
+3.  Domci_ukol_5_script_main.js     .   Priprava vypracováńi funkčniho scriptu dle zadaní prot test. (Predpříprava pro soubor main.js)
+
+----------------------
+5. BSDE 2025 Summer Zadání domácí úkol _ homework assignment 05.pdf             -             zadání úkolu
+6. info_support_ukol_5.txt                                           -                        informace , vysvětléní ,dodatky,  struktura práce v projektu 

@@ -1,77 +1,94 @@
-Návrh algoritmu (Domácí úkol 5)
 
-Tento algoritmus rozšiřuje předchozí generátor zaměstnanců o modul statistické analýzy křestních jmen v závislosti na pohlaví a pracovním úvazku.
+Návrh algoritmu: Statistika jmen zaměstnanců (Domácí úkol 5)
 
 
-1. Deklarace a inicializace
 
-    Vstup (dtoIn): Objekt obsahující počet zaměstnanců (count) a rozsah věku (age.min, age.max).
+1. Vstupní data (dtoIn)
 
-    Výstup (dtoOut): Objekt obsahující mapy četnosti jmen a pole dat pro grafy.
+    count: Požadovaný počet generovaných zaměstnanců (celé číslo).
+
+    age: Objekt obsahující min a max pro věkové rozmezí.
+
 
 
 
 2. Hlavní proces (Funkce main)
 
-    Validace: Ověření, zda jsou vstupní data dtoIn korektní (čísla, logické rozsahy věku).
+    Krok 1: Přijme konfigurační objekt dtoIn.
 
-    Generování: Volání funkce generateEmployeeData s parametry z dtoIn.
+    Krok 2: Zavolá funkci generateEmployeeData pro vytvoření pole náhodných zaměstnanců.
 
-    Analýza: Volání funkce getEmployeeChartContent s vygenerovaným seznamem zaměstnanců.
+    Krok 3: Vygenerované pole předá funkci getEmployeeChartContent k analýze.
 
-    Návrat: Funkce vrátí finální objekt dtoOut.
-
-
-
-3. Funkce: generateEmployeeData (Logika generování)
-
-Tato část zajišťuje vytvoření pole objektů představujících zaměstnance.
-
-    Pro každého zaměstnance (iterace 0 až count):
-
-        Náhodně urči pohlaví (male/female).
-
-        Vyber náhodné jméno a příjmení z příslušné sady podle zvoleného pohlaví.
-
-        Vypočítej náhodné datum narození (birthdate) tak, aby odpovídalo věkovému rozmezí min až max. Formátuj jako ISO řetězec.
-
-        Přiřaď náhodný pracovní úvazek z hodnot: 10, 20, 30 nebo 40 hodin.
-
-        Ulož objekt zaměstnance do pole.
+    Krok 4: Vrátí výsledný objekt dtoOut.
 
 
 
-4. Funkce: getEmployeeChartContent (Logika analýzy)
 
-Tato část provádí agregaci dat do pěti sledovaných kategorií:
+3. Logika generování dat (generateEmployeeData)
 
-    Všichni zaměstnanci (all): Četnost jmen bez ohledu na věk či pohlaví.
+    Inicializuje prázdné pole employees a pomocnou množinu usedDates pro zajištění unikátnosti.
 
-    Ženy (female): Četnost jmen pouze u zaměstnanců s pohlavím "female".
+    V cyklu běžícím count-krát provede:
 
-    Muži (male): Četnost jmen pouze u zaměstnanců s pohlavím "male".
+        Náhodný výběr pohlaví (male/female).
 
-    Ženy na zkrácený úvazek (femalePartTime): Zaměstnanci s pohlavím "female" a úvazkem 10, 20 nebo 30 hodin týdně.
+        Výběr jména a příjmení z příslušných polí podle pohlaví.
 
-    Muži na plný úvazek (maleFullTime): Zaměstnanci s pohlavím "male" a úvazkem 40 hodin týdně.
+          Výpočet data narození: Vygeneruje náhodný časový údaj v milisekundách odpovídající rozmezí min až max let.
 
-Technický postup:
+        Zajištění unikátnosti: Pokud již ISO řetězec vygenerovaného data v usedDates existuje, generování pro daný záznam opakuje.
 
-    Vytvoř prázdné objekty (mapy) pro každou kategorii.
+        Náhodně přiřadí hodnotu úvazku z možností [10, 20, 30, 40].
 
-    Procházej seznam zaměstnanců a pro každé jméno inkrementuj počítadlo v příslušných mapách, pokud zaměstnanec splňuje kritéria kategorie.
-
-    Po dokončení průchodu transformuj tyto mapy (objekty) do polí objektů typu { label: jméno, value: počet } pro potřeby sekce chartData.
+        Vloží objekt zaměstnance do pole.
 
 
 
-5. Struktura výsledných dat (dtoOut)
 
-Výsledný objekt je rozdělen na dvě hlavní větve:
 
-    names: Obsahuje klíče pro každou kategorii, kde hodnotou je objekt (např. {"Jan": 5}).
 
-    chartData: Obsahuje stejné kategorie, ale data jsou uložena v poli pro snadné vykreslení grafů (např. [{label: "Jan", value: 5}]).
+4. Statistická analýza a transformace (getEmployeeChartContent)
+
+    Agregace (O(n)): Jedním průchodem polem zaměstnanců inkrementuje počítadla jmen v pěti kategoriích:
+
+        all: Všechna jména.
+
+        male / female: Jména rozdělená poddle pohlaví.
+
+        femalePartTime: Ženy s úvazkem 10, 20 nebo 30 hodin.
+
+        maleFullTime: Muži s úvazkem 40 hodin.
+
+    Transformace a řazení:
+
+        Pro každou kategorii vytvoří mapu četnosti (names).
+
+        Každou mapu převede na pole objektů { label, value } pro grafy (chartData).
+
+        Klíčový krok: Všechny výstupy (objekty i pole) seřadí sestupně podle hodnoty value (četnosti).
+
+
+
+
+
+
+
+5.  S truktura Výstupní data (dtoOut)
+
+    Vrací objekt se dvěma hlavními atributy:
+
+        names: Obsahuje 5 objektů s četností jmen (klíč = jméno, hodnota = počet).
+
+        chartData: Obsahuje 5 polí připravených pro vizualizaci v grafech.
+
+
+
+
+
+
+
+
 
 
 
